@@ -13,6 +13,7 @@
     "license": "MGPL-2.0-or-laterIT",
     "require": {
         "php": "^7.3 || ^7.4 || ^8",
+        "asm89/twig-lint": "*",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
         "ergebnis/composer-normalize": "^2.13",
         "friendsoftwig/twigcs": "^4",
