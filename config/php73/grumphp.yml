@@ -1,29 +1,3 @@
-parameters:
-    # PHP CS
-    tasks.phpcs.standard: PSR12
-    tasks.phpcs.ignore_patterns:
-        - "/build/"
-        - "/benchmarks/"
-        - "/node_modules/"
-        - "/spec/"
-        - "/tests/"
-        - "/var/"
-        - "/vendor/"
-    tasks.phpcs.triggered_by:
-        - php
-
-    # Twigcs
-    tasks.twigcs.path: src
-    tasks.twigcs.triggered_by: ['twig']
-    tasks.twigcs.ruleset: 'FriendsOfTwig\Twigcs\Ruleset\Official'
-    tasks.twigcs.severity: 'error'
-
-    # Security Checker
-    tasks.securitychecker.format: ~
-    tasks.securitychecker.end_point: ~
-    tasks.securitychecker.timeout: ~
-    tasks.securitychecker.lockfile: ./composer.lock
-
 grumphp:
     process_timeout: null
     parallel:
@@ -32,28 +6,32 @@ grumphp:
     fixer:
         enabled: true
         fix_by_default: false
+    stop_on_failure: false
+    ignore_unstaged_changes: false
+    hide_circumvention_tip: false
+    ascii:
+        failed: config/response/failed.txt
+        succeeded: config/response/succeeded.txt      
 
     extensions:
         - Boehringer\PhpConventions\GrumphpTasksExtension
 
     # Testsuites
-    testsuites:
-        cs:
-            tasks:
-                - composer
-                - composer_normalize
-                - yamllint
-                - phplint
-                - twigcs
-                - phpcs
-
-        static-analysis:
-            tasks:
-                - phpstan
-
-        security:
-            tasks:
-                - securitychecker
+    # testsuites:
+        # cs:
+        #     tasks:
+        #         - composer
+        #         - composer_normalize
+        #         - yamllint
+        #         - phplint
+        #         - twigcs
+        #         - phpcs
+        # static-analysis:
+        #     tasks:
+        #         - phpstan
+        # security:
+        #     tasks:
+        #         - securitychecker
 
     # Tasks.
     tasks:
@@ -71,6 +49,29 @@ grumphp:
         # Composer Normalize
         composer_normalize: ~
 
+        # PHP Code Sniffer.
+        phpcs:
+            report: '%tasks.phpcs.report%'
+            sniffs: '%tasks.phpcs.sniffs%'
+            exclude: '%tasks.phpcs.exclude%'
+            ignore_patterns: '%tasks.phpcs.ignore_patterns%'
+            standard: '%tasks.phpcs.standard%'
+            triggered_by: '%tasks.phpcs.triggered_by%'
+            whitelist_patterns: '%tasks.phpcs.whitelist_patterns%'
+            warning_severity: '%tasks.phpcs.warning_severity%'
+            metadata:
+                priority: '%tasks.phpcs.metadata.priority%'
+
+        # PHP Lint
+        phplint:
+            ignore_patterns: '%tasks.phplint.ignore_patterns%'
+            triggered_by: '%tasks.phplint.triggered_by%'
+
+        # JSON Lint
+        jsonlint:
+            ignore_patterns: '%tasks.jsonlint.ignore_patterns%'
+            detect_key_conflicts: '%tasks.jsonlint.detect_key_conflicts%'
+
         # YAML Lint
         yamllint:
             whitelist_patterns: []
@@ -82,33 +83,19 @@ grumphp:
 
         # Javascript Lint
         eslint:
-            bin: node_modules/.bin/eslint
-            triggered_by: [js, jsx, ts, tsx, vue]
-            whitelist_patterns:
-                - /^resources\/js\/(.*)/
-            config: .eslintrc.json
+            bin: '%tasks.eslint.bin%'
+            triggered_by: '%tasks.eslint.triggered_by%'
+            whitelist_patterns: '%tasks.eslint.whitelist_patterns%'
+            config: '%tasks.eslint.config%'
                     
-        # JSON Lint
-        jsonlint:
-            ignore_patterns: []
-            detect_key_conflicts: true
-
-        # PHP Lint
-        phplint: ~
-
         # Twig CS
         twigcs:
             path: '%tasks.twigcs.path%'
             ruleset: '%tasks.twigcs.ruleset%'
             severity: '%tasks.twigcs.severity%'
             triggered_by: '%tasks.twigcs.triggered_by%'
-            exclude: []
+            exclude: '%tasks.twigcs.exclude%'
 
-        # PHP CS
-        phpcs:
-            standard: '%tasks.phpcs.standard%'
-            ignore_patterns: '%tasks.phpcs.ignore_patterns%'
-            triggered_by: '%tasks.phpcs.triggered_by%'
 
         # GIT pre-commit message checker
         git_commit_message:
@@ -120,10 +107,48 @@ grumphp:
             type_scope_conventions: []
             max_body_width: 72
             max_subject_width: 80
-            matchers:
-                Must contain JIRA issue number: '/^GDSREF-\d+: [A-Z].+\./'
+            matchers: '%tasks.git_commit_message.matchers%'  
             case_insensitive: true
             multiline: true
             additional_modifiers: ''
 
-     
+parameters:
+    tasks.phpcs.report: full
+    tasks.phpcs.standard: PSR12
+    tasks.phpcs.ignore_patterns:
+        - "/build/"
+        - "/benchmarks/"
+        - "/node_modules/"
+        - "/spec/"
+        - "/tests/"
+        - "/var/"
+        - "/vendor/"
+    tasks.phpcs.triggered_by:
+        - php
+
+    tasks.phplint.ignore_patterns: []
+    tasks.phplint.triggered_by: []
+
+    tasks.twigcs.path: src
+    tasks.twigcs.triggered_by: ['twig']
+    tasks.twigcs.ruleset: 'FriendsOfTwig\Twigcs\Ruleset\Official'
+    tasks.twigcs.severity: 'error'
+    tasks.twigcs.exclude: []
+
+    tasks.securitychecker.format: ~
+    tasks.securitychecker.end_point: ~
+    tasks.securitychecker.timeout: ~
+    tasks.securitychecker.lockfile: ./composer.lock
+
+    tasks.eslint.bin: eslint
+    tasks.eslint.triggered_by: [js, jsx, ts, tsx, vue]
+    tasks.eslint.whitelist_patterns:
+        - /^resources\/js\/(.*)/
+    tasks.eslint.config: .eslintrc.json
+
+    tasks.jsonlint.ignore_patterns: []
+    tasks.jsonlint.detect_key_conflicts: true
+
+    tasks.git_commit_message.max_body_width: 0
+    tasks.git_commit_message.max_subject_width: 0
+
