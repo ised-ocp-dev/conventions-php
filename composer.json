@@ -1,5 +1,5 @@
 {
-    "name": "boehringer/bi-platform-php-conventions",
+    "name": "robolo/conventions-php",
     "type": "library",
     "description": "PHP / Code enforcement conventions for GrumPHP tasks.",
     "keywords": [
@@ -32,7 +32,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Boehringer\\PhpConventions\\": "./src/"
+            "Robolo\\ConventionsPhp\\": "./src/"
         }
     }
 }

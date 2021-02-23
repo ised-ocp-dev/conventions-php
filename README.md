@@ -1,8 +1,7 @@
-# PHP conventions
+# Conventions for PHP Code
 
 This development tool provides a pre-defined configuration for [GrumPHP](https://github.com/phpro/grumphp) with the following checks enabled:
 
-* Security Checker ([sensiolabs/security-checker](https://packagist.org/packages/sensiolabs/security-checker)),
 * composer.json validation,
 * composer.json normalization ([ergebnis/composer-normalize](https://packagist.org/packages/ergebnis/composer-normalize)),
 * YAML Lint,
@@ -20,7 +19,7 @@ Tasks can be also added or skipped according to your need.
 ## Installation
 
 ```shell
-composer require boehringer/bi-platform-php-conventions:^1 --dev
+composer require robolo/conventions-php:^1 --dev
 ```
 
 ### If you're not using GrumPHP
@@ -30,7 +29,7 @@ Manually add to your `composer.json` file
 ```yaml
     "extra": {
         "grumphp": {
-            "config-default-path": "vendor/boehringer/bi-platform-php-conventions/config/php73/grumphp.yml"
+            "config-default-path": "vendor/robolo/conventions-php/config/php73/grumphp.yml"
         }
     }
 ```
@@ -49,14 +48,14 @@ Edit the file `grumphp.yml.dist` or `grumphp.yml` and add on the top it:
 
 ```yaml
 imports:
-  - { resource: vendor/boehringer/bi-platform-php-conventions/config/php73/grumphp.yml }
+  - { resource: vendor/robolo/conventions-php/config/php73/grumphp.yml }
 ```
 
 To add an extra Grumphp task:
 
 ```yaml
 imports:
-  - { resource: vendor/boehringer/bi-platform-php-conventions/config/php73/grumphp.yml }
+  - { resource: vendor/robolo/conventions-php/config/php73/grumphp.yml }
 
 parameters:
   extra_tasks:

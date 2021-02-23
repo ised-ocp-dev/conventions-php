@@ -34,7 +34,7 @@ grumphp:
         fix_by_default: false
 
     extensions:
-        - Boehringer\PhpConventions\GrumphpTasksExtension
+        - Robolo\ConventionsPhp\GrumphpTasksExtension
 
     # Testsuites
     testsuites:
