@@ -19,7 +19,7 @@ Tasks can be also added or skipped according to your need.
 ## Installation
 
 ```shell
-composer require robolo/conventions-php:^1 --dev
+composer require ised-isde/conventions-php:^1 --dev
 ```
 
 ### If you're not using GrumPHP
@@ -29,7 +29,7 @@ Manually add to your `composer.json` file
 ```yaml
     "extra": {
         "grumphp": {
-            "config-default-path": "vendor/robolo/conventions-php/config/php73/grumphp.yml"
+            "config-default-path": "vendor/ised-isde/conventions-php/config/php73/grumphp.yml"
         }
     }
 ```
@@ -48,14 +48,14 @@ Edit the file `grumphp.yml.dist` or `grumphp.yml` and add on the top it:
 
 ```yaml
 imports:
-  - { resource: vendor/robolo/conventions-php/config/php73/grumphp.yml }
+  - { resource: vendor/ised-isde/conventions-php/config/php73/grumphp.yml }
 ```
 
 To add an extra Grumphp task:
 
 ```yaml
 imports:
-  - { resource: vendor/robolo/conventions-php/config/php73/grumphp.yml }
+  - { resource: vendor/ised-isde/conventions-php/config/php73/grumphp.yml }
 
 parameters:
   extra_tasks:
