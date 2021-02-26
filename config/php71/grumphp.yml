@@ -34,7 +34,7 @@ grumphp:
         fix_by_default: false
 
     extensions:
-        - Robolo\ConventionsPhp\GrumphpTasksExtension
+        - IsedIsde\ConventionsPhp\GrumphpTasksExtension
 
     # Testsuites
     testsuites:
@@ -133,7 +133,7 @@ grumphp:
             max_body_width: 72
             max_subject_width: 80
             matchers:
-                Must contain JIRA issue number: '/^GDSREF-\d+: [A-Z].+\./'
+                Must contain JIRA issue number: '/^JIRA-\d+: [A-Z].+\./'
             case_insensitive: true
             multiline: true
             additional_modifiers: ''
