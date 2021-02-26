@@ -14,7 +14,7 @@ grumphp:
         succeeded: config/response/succeeded.txt      
 
     extensions:
-        - Robolo\ConventionsPhp\GrumphpTasksExtension
+        - IsedIsde\ConventionsPhp\GrumphpTasksExtension
 
     # Testsuites
     # testsuites:
