@@ -1,5 +1,5 @@
 {
-    "name": "robolo/conventions-php",
+    "name": "ised-isde/conventions-php",
     "type": "library",
     "description": "PHP / Code enforcement conventions for GrumPHP tasks.",
     "keywords": [
@@ -32,7 +32,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Robolo\\ConventionsPhp\\": "./src/"
+            "IsedIsde\\ConventionsPhp\\": "./src/"
         }
     }
 }
